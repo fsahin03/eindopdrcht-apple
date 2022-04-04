@@ -50,6 +50,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func nextQuestion(_ sender: Any) {
         currentQuestion += 1
+        answerLabel.text=""
         
         if currentQuestion >= categoryQuestions.count{
             currentQuestion = 0
@@ -121,6 +122,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
         return true
     }
+    
+  
     
     // MARK: - JSON Functions
     
