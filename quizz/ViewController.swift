@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //    let questionTwo = QuizQuestion(question:  "De man die een doel verdedigt noemen we een?", answer: "Keeper")
     
     var quizQuestions: [QuizQuestion] = []
+    var categoryQuestions:[QuizQuestion] = []
     var currentQuestion = 0
     var answerIsCorrect = false
     var answerCount = 0
@@ -24,7 +25,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var blue: UIButton!
     @IBOutlet weak var yellow: UIButton!
     @IBOutlet weak var answerTextField: UITextField!
-    
+    @IBOutlet weak var red: UIButton!
+    @IBOutlet weak var orange: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         //updateQuestion()
@@ -36,26 +38,67 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setupQuiz() {
-        print("quizQuestions is \(quizQuestions)")
+//        print("quizQuestions is \(quizQuestions)")
+        // setup the quiz!
+//        categoryQuestions = quizQuestions.filter { $0.category == .orange}
+      
     }
     
     func updateQuestion() {
-        questionLabel.text = quizQuestions[currentQuestion].question
+        questionLabel.text = categoryQuestions[currentQuestion].question
     }
     
     @IBAction func nextQuestion(_ sender: Any) {
         currentQuestion += 1
         
-        if currentQuestion >= quizQuestions.count{
+        if currentQuestion >= categoryQuestions.count{
             currentQuestion = 0
         }
         updateQuestion()
     }
     
     @IBAction func red(_ sender: Any) {
-        updateQuestion()
+        categoryQuestions = quizQuestions.filter { $0.category == .red }
         green.isHidden = true
         blue.isHidden = true
+        yellow.isHidden = true
+        orange.isHidden = true
+        //setupQuiz()
+        updateQuestion()
+    }
+    
+    @IBAction func blue(_ sender: Any) {
+        categoryQuestions = quizQuestions.filter { $0.category == .blue }
+        updateQuestion()
+        green.isHidden = true
+        red.isHidden = true
+        yellow.isHidden = true
+        orange.isHidden = true
+    }
+    
+    @IBAction func green(_ sender: Any) {
+        categoryQuestions = quizQuestions.filter { $0.category == .green }
+        updateQuestion()
+        blue.isHidden = true
+        red.isHidden = true
+        yellow.isHidden = true
+        orange.isHidden = true
+    }
+    
+    @IBAction func yellow(_ sender: Any) {
+        categoryQuestions = quizQuestions.filter { $0.category == .yellow}
+        updateQuestion()
+        red.isHidden = true
+        blue.isHidden = true
+        green.isHidden = true
+        orange.isHidden = true
+    }
+    @IBAction func orange(_ sender: Any) {
+        categoryQuestions = quizQuestions.filter { $0.category == .orange}
+        updateQuestion()
+        red.isHidden = true
+        blue.isHidden = true
+        green.isHidden = true
         yellow.isHidden = true
     }
     
@@ -124,6 +167,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     // added a comment (for testing)
+    
 }
 
 
