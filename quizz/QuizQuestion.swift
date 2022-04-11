@@ -8,7 +8,7 @@
 import Foundation
 
 struct QuizQuestion: Codable {
-    var category: QuizCategory
+    var category: QuizCategory  
     var qaNumber: Int
     var question: String
     var answer: String

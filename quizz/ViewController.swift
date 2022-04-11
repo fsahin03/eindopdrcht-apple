@@ -17,6 +17,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var currentQuestion = 0
     var answerIsCorrect = false
     var answerCount = 0
+    var quizAnswers: [QuizQuestion] = []
+    var categoryAnswers:[QuizQuestion] = []
     
     
     @IBOutlet weak var questionLabel: UILabel!
@@ -46,6 +48,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func updateQuestion() {
         questionLabel.text = categoryQuestions[currentQuestion].question
+        answerTextField.text=""
     }
     
     @IBAction func nextQuestion(_ sender: Any) {
@@ -56,6 +59,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             currentQuestion = 0
         }
         updateQuestion()
+        
+    }
+    @IBAction func showAnswer(_ sender: Any) {
+        answerLabel.text=quizQuestions[currentQuestion].answer
     }
     
     @IBAction func red(_ sender: Any) {
@@ -105,8 +112,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func checkAnswer(answer: String) {
         if answer.lowercased() == quizQuestions[currentQuestion].answer.lowercased() {
+            var score = 0
             answerLabel.text = "Goed!"
             answerCount+=1
+            score+=1
+            print(score)
         } else {
             answerLabel.text = "Fout!"
         }
@@ -122,6 +132,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
         return true
     }
+    
     
   
     
