@@ -153,7 +153,7 @@
                 </label>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="79.710144927536234" y="76.339285714285708"/>
+            <point key="canvasLocation" x="110" y="-82"/>
         </scene>
     </scenes>
     <resources>
