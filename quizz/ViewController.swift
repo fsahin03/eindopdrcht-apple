@@ -17,8 +17,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var currentQuestion = 0
     var answerIsCorrect = false
     var answerCount = 0
-    var quizAnswers: [QuizQuestion] = []
-    var categoryAnswers:[QuizQuestion] = []
+    
     
     
     @IBOutlet weak var questionLabel: UILabel!
@@ -29,6 +28,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var answerTextField: UITextField!
     @IBOutlet weak var red: UIButton!
     @IBOutlet weak var orange: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //updateQuestion()
@@ -48,12 +48,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func updateQuestion() {
         questionLabel.text = categoryQuestions[currentQuestion].question
-        answerTextField.text=""
+        answerTextField.text = ""
     }
+    
+    @IBAction func nextCategory(_ sender: Any) {
+        green.isHidden = false
+        red.isHidden = false
+        blue.isHidden = false
+        yellow.isHidden = false
+        orange.isHidden = false
+        answerLabel.text=""
+        questionLabel.text=""
+    }
+   
     
     @IBAction func nextQuestion(_ sender: Any) {
         currentQuestion += 1
-        answerLabel.text=""
+        answerLabel.text = ""
         
         if currentQuestion >= categoryQuestions.count{
             currentQuestion = 0
@@ -61,8 +72,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         updateQuestion()
         
     }
+  
     @IBAction func showAnswer(_ sender: Any) {
-        answerLabel.text=quizQuestions[currentQuestion].answer
+        answerLabel.text=categoryQuestions[currentQuestion].answer
     }
     
     @IBAction func red(_ sender: Any) {
@@ -100,6 +112,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         blue.isHidden = true
         green.isHidden = true
         orange.isHidden = true
+        
     }
     @IBAction func orange(_ sender: Any) {
         categoryQuestions = quizQuestions.filter { $0.category == .orange}
@@ -111,7 +124,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func checkAnswer(answer: String) {
-        if answer.lowercased() == quizQuestions[currentQuestion].answer.lowercased() {
+        if answer.lowercased() == categoryQuestions[currentQuestion].answer.lowercased() {
             var score = 0
             answerLabel.text = "Goed!"
             answerCount+=1
@@ -121,6 +134,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
             answerLabel.text = "Fout!"
         }
     }
+    
+  
+    
 
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
