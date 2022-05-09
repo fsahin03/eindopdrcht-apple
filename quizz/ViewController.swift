@@ -9,16 +9,11 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
-//    let questionOne = QuizQuestion(question:  "Reuzel is gesmolten?", answer: "Vet")
-//    let questionTwo = QuizQuestion(question:  "De man die een doel verdedigt noemen we een?", answer: "Keeper")
-    
     var quizQuestions: [QuizQuestion] = []
     var categoryQuestions:[QuizQuestion] = []
     var currentQuestion = 0
     var answerIsCorrect = false
     var answerCount = 0
-    
-    
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var answerLabel: UILabel!
@@ -43,7 +38,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //        print("quizQuestions is \(quizQuestions)")
         // setup the quiz!
 //        categoryQuestions = quizQuestions.filter { $0.category == .orange}
-      
     }
     
     func updateQuestion() {
@@ -57,11 +51,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         blue.isHidden = false
         yellow.isHidden = false
         orange.isHidden = false
-        answerLabel.text=""
-        questionLabel.text=""
+        answerLabel.text = ""
+        questionLabel.text = ""
     }
-   
-    
     @IBAction func nextQuestion(_ sender: Any) {
         currentQuestion += 1
         answerLabel.text = ""
@@ -72,7 +64,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         updateQuestion()
         
     }
-  
     @IBAction func showAnswer(_ sender: Any) {
         answerLabel.text=categoryQuestions[currentQuestion].answer
     }
@@ -135,10 +126,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-  
-    
-
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
         if let answer = textField.text {
             checkAnswer(answer: answer)
@@ -148,9 +135,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
         return true
     }
-    
-    
-  
     
     // MARK: - JSON Functions
     
